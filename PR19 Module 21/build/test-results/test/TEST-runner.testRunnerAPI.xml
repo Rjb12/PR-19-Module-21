@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="runner.testRunnerAPI" tests="7" skipped="0" failures="0" errors="0" timestamp="2024-04-02T04:33:29" hostname="213130340006" time="56.07">
+  <properties/>
+  <testcase name="Test web login normal" classname="runner.testRunnerAPI" time="9.833"/>
+  <testcase name="Test web login lock user" classname="runner.testRunnerAPI" time="6.749"/>
+  <testcase name="Test web login wrong password" classname="runner.testRunnerAPI" time="6.433"/>
+  <testcase name="Test web add item to cart" classname="runner.testRunnerAPI" time="7.116"/>
+  <testcase name="Test web remove item to cart" classname="runner.testRunnerAPI" time="8.4"/>
+  <testcase name="Test web sort high to low" classname="runner.testRunnerAPI" time="8.296"/>
+  <testcase name="Test web sort Z to A" classname="runner.testRunnerAPI" time="9.234"/>
+  <system-out><![CDATA[Before All
+
+@web
+Scenario: Test web login normal           # src/test/java/features/web.feature:4
+Before Test
+  Given user go to login page             # stepDef.WebStep.userGoToLoginPage()
+  And user input username "standard_user" # stepDef.WebStep.userInputUsername(java.lang.String)
+  And user input pwd "secret_sauce"       # stepDef.WebStep.userInputPwd(java.lang.String)
+  And user click login button             # stepDef.WebStep.userClickLoginButton()
+  Then user verify see cart icon          # stepDef.WebStep.userVerifySeeCartIcon()
+After Test
+
+@web
+Scenario: Test web login lock user                       # src/test/java/features/web.feature:12
+Before Test
+  Given user go to login page                            # stepDef.WebStep.userGoToLoginPage()
+  And user input username "locked_out_user"              # stepDef.WebStep.userInputUsername(java.lang.String)
+  And user input pwd "secret_sauce"                      # stepDef.WebStep.userInputPwd(java.lang.String)
+  And user click login button                            # stepDef.WebStep.userClickLoginButton()
+  Then user verify see errmsg "user has been locked out" # stepDef.WebStep.userVerifySeeErrmsg(java.lang.String)
+After Test
+
+@web
+Scenario: Test web login wrong password                                     # src/test/java/features/web.feature:20
+Before Test
+  Given user go to login page                                               # stepDef.WebStep.userGoToLoginPage()
+  And user input username "locked_out_user"                                 # stepDef.WebStep.userInputUsername(java.lang.String)
+  And user input pwd "DFAW"                                                 # stepDef.WebStep.userInputPwd(java.lang.String)
+  And user click login button                                               # stepDef.WebStep.userClickLoginButton()
+  Then user verify see errmsg "Username and password do not match any user" # stepDef.WebStep.userVerifySeeErrmsg(java.lang.String)
+After Test
+
+@web
+Scenario: Test web add item to cart       # src/test/java/features/web.feature:28
+Before Test
+  Given user go to login page             # stepDef.WebStep.userGoToLoginPage()
+  And user input username "standard_user" # stepDef.WebStep.userInputUsername(java.lang.String)
+  And user input pwd "secret_sauce"       # stepDef.WebStep.userInputPwd(java.lang.String)
+  And user click login button             # stepDef.WebStep.userClickLoginButton()
+  Then user verify see cart icon          # stepDef.WebStep.userVerifySeeCartIcon()
+  And user click add to cart              # stepDef.WebStep.userClickAddToCart()
+  And user click add to cart              # stepDef.WebStep.userClickAddToCart()
+  Then verify cart item has "2"           # stepDef.WebStep.verifyCartItemHas(java.lang.String)
+After Test
+
+@web
+Scenario: Test web remove item to cart    # src/test/java/features/web.feature:39
+Before Test
+  Given user go to login page             # stepDef.WebStep.userGoToLoginPage()
+  And user input username "standard_user" # stepDef.WebStep.userInputUsername(java.lang.String)
+  And user input pwd "secret_sauce"       # stepDef.WebStep.userInputPwd(java.lang.String)
+  And user click login button             # stepDef.WebStep.userClickLoginButton()
+  Then user verify see cart icon          # stepDef.WebStep.userVerifySeeCartIcon()
+  And user click add to cart              # stepDef.WebStep.userClickAddToCart()
+  And user click add to cart              # stepDef.WebStep.userClickAddToCart()
+  Then verify cart item has "2"           # stepDef.WebStep.verifyCartItemHas(java.lang.String)
+  And user click remove item chart        # stepDef.WebStep.userClickRemoveItemChart()
+  Then verify cart item has "1"           # stepDef.WebStep.verifyCartItemHas(java.lang.String)
+After Test
+
+@web
+Scenario: Test web sort high to low       # src/test/java/features/web.feature:52
+Before Test
+  Given user go to login page             # stepDef.WebStep.userGoToLoginPage()
+  And user input username "standard_user" # stepDef.WebStep.userInputUsername(java.lang.String)
+  And user input pwd "secret_sauce"       # stepDef.WebStep.userInputPwd(java.lang.String)
+  And user click login button             # stepDef.WebStep.userClickLoginButton()
+  Then user verify see cart icon          # stepDef.WebStep.userVerifySeeCartIcon()
+  And user click sort item high to low    # stepDef.WebStep.userClickSortItemHighToLow()
+After Test
+
+@web
+Scenario: Test web sort Z to A            # src/test/java/features/web.feature:61
+Before Test
+  Given user go to login page             # stepDef.WebStep.userGoToLoginPage()
+  And user input username "standard_user" # stepDef.WebStep.userInputUsername(java.lang.String)
+  And user input pwd "secret_sauce"       # stepDef.WebStep.userInputPwd(java.lang.String)
+  And user click login button             # stepDef.WebStep.userClickLoginButton()
+  Then user verify see cart icon          # stepDef.WebStep.userVerifySeeCartIcon()
+  And user click sort item Z to A         # stepDef.WebStep.userClickSortItemZToA()
+After Test
+After All
+]]></system-out>
+  <system-err><![CDATA[Apr 02, 2024 11:33:34 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 123, returning the closest version; found: 121; Please update to a Selenium version that supports CDP version 123
+Apr 02, 2024 11:33:41 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 123, returning the closest version; found: 121; Please update to a Selenium version that supports CDP version 123
+Apr 02, 2024 11:33:48 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 123, returning the closest version; found: 121; Please update to a Selenium version that supports CDP version 123
+Apr 02, 2024 11:33:55 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 123, returning the closest version; found: 121; Please update to a Selenium version that supports CDP version 123
+Apr 02, 2024 11:34:01 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 123, returning the closest version; found: 121; Please update to a Selenium version that supports CDP version 123
+Apr 02, 2024 11:34:10 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 123, returning the closest version; found: 121; Please update to a Selenium version that supports CDP version 123
+Apr 02, 2024 11:34:20 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 123, returning the closest version; found: 121; Please update to a Selenium version that supports CDP version 123
+]]></system-err>
+</testsuite>
